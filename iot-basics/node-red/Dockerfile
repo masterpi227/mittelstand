@@ -7,4 +7,4 @@ COPY uci-secom.csv /data/data.csv
 
 WORKDIR /usr/src/node-red
 RUN npm install node-red-contrib-influxdb
-RUN npm node-red-contrib-google-pubsub
+RUN npm install node-red-contrib-google-pubsub
