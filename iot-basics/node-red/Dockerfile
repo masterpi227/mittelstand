@@ -3,7 +3,7 @@ FROM nodered/node-red
 RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production
 
 COPY settings.js /data/settings.js
-COPY uci-semon.csv /data/data.csv
+COPY uci-secom.csv /data/data.csv
 
 WORKDIR /usr/src/node-red
 RUN npm install node-red-contrib-influxdb
