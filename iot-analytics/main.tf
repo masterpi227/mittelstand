@@ -84,7 +84,7 @@ resource "google_compute_instance" "instance-grafana" {
 }
 
 resource "google_compute_firewall" "rules" {
-  project     = "workshop-iotdat-test-01"
+  project     = "workshop-iotdat"
   name        = "default-allow-grafana"
   network     = "default"
   description = "Creates firewall rule targeting tagged instances"
