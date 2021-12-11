@@ -21,7 +21,6 @@ resource "google_compute_instance" "instance-influxdb" {
 
   network_interface {
     network = "default"
-    tags    = ["influxdb"]
 
     access_config {
       // Ephemeral public IP
@@ -39,7 +38,7 @@ resource "google_compute_instance" "instance-influxdb" {
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.default.email
+    
     scopes = ["cloud-platform"]
   }
 }
