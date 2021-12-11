@@ -94,6 +94,6 @@ resource "google_compute_firewall" "rules" {
     ports     = ["3000"]
   }
 
-  source_tags = ["grafana"]
+  source_ranges = ["0.0.0.0/0"]
   target_tags = ["grafana"]
 }
