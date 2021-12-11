@@ -42,3 +42,58 @@ resource "google_compute_instance" "instance-influxdb" {
     scopes = ["cloud-platform"]
   }
 }
+
+resource "google_compute_instance" "instance-grafana" {
+  name                      = "instance-grafana"
+  zone                      = "us-central1-a"
+  tags                      = ["grafana"]
+  machine_type              = "n1-standard-1"
+  allow_stopping_for_update = true
+
+  boot_disk {
+    auto_delete = "true"
+
+    initialize_params {
+      image = "debian-cloud/debian-10"
+      size  = "10"
+    }
+  }
+
+  network_interface {
+    network = "default"
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+
+  metadata_startup_script = <<SCRIPT
+    apt update
+    apt install -y git
+    git clone https://github.com/masterpi227/mittelstand.git
+    cd mittelstand/iot-basics
+    bash docker.sh
+    bash grafana.sh
+    SCRIPT
+
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    
+    scopes = ["cloud-platform"]
+  }
+}
+
+resource "google_compute_firewall" "rules" {
+  project     = "workshop-iotdat-test-01"
+  name        = "default-allow-grafana"
+  network     = "default"
+  description = "Creates firewall rule targeting tagged instances"
+
+  allow {
+    protocol  = "tcp"
+    ports     = ["3000"]
+  }
+
+  source_tags = ["grafana"]
+  target_tags = ["grafana"]
+}
