@@ -112,7 +112,7 @@ resource "google_compute_instance" "instance-sensorapp" {
     apt install -y git python3 python3-pip
     git clone https://github.com/masterpi227/mittelstand.git
     cd mittelstand/iot-analytics/sensor-app
-    pip3 install -m requirements.txt
+    pip3 install -r requirements.txt
     python3 main.py
     SCRIPT
 
