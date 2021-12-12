@@ -83,6 +83,46 @@ resource "google_compute_instance" "instance-grafana" {
   }
 }
 
+resource "google_compute_instance" "instance-sensorapp" {
+  name                      = "instance-sensorapp"
+  zone                      = "us-central1-a"
+  tags                      = ["sensorapp"]
+  machine_type              = "f1-micro"
+  allow_stopping_for_update = true
+
+  boot_disk {
+    auto_delete = "true"
+
+    initialize_params {
+      image = "debian-cloud/debian-10"
+      size  = "10"
+    }
+  }
+
+  network_interface {
+    network = "default"
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+
+  metadata_startup_script = <<SCRIPT
+    apt update
+    apt install -y git, python3, python3-pip
+    git clone https://github.com/masterpi227/mittelstand.git
+    cd mittelstand/iot-analytics/sensor-app
+    pip3 install -m requirements.txt
+    python3 main.py
+    SCRIPT
+
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    
+    scopes = ["cloud-platform"]
+  }
+}
+
 resource "google_compute_firewall" "rules" {
   project     = "workshop-iotdat"
   name        = "default-allow-grafana"
