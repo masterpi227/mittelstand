@@ -109,7 +109,7 @@ resource "google_compute_instance" "instance-sensorapp" {
 
   metadata_startup_script = <<SCRIPT
     apt update
-    apt install -y git, python3, python3-pip
+    apt install -y git python3 python3-pip
     git clone https://github.com/masterpi227/mittelstand.git
     cd mittelstand/iot-analytics/sensor-app
     pip3 install -m requirements.txt
