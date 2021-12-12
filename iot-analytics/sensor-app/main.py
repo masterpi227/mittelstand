@@ -52,7 +52,7 @@ if __name__ == "__main__":
 							"value": float(dt[key])
 						}
 					}
-					client.write_points([item], time_precision='m')
+					client.write_points([item], time_precision='ms')
 			data.put(dt)
 			time.sleep(0.1)
 		except:
