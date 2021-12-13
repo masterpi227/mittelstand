@@ -1,0 +1,1 @@
+docker run -p 8077:8077 -v $(pwd)/loudml/config.yml:/etc/loudml/config.yml:ro -d loudml/community:1.4
