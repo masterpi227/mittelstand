@@ -163,7 +163,7 @@ resource "google_compute_instance" "instance-sensorapp" {
   }
 }
 
-resource "google_compute_firewall" "rules" {
+resource "google_compute_firewall" "default-allow-grafana" {
   project     = "workshop-iotdat"
   name        = "default-allow-grafana"
   network     = "default"
@@ -178,7 +178,7 @@ resource "google_compute_firewall" "rules" {
   target_tags = ["grafana"]
 }
 
-resource "google_compute_firewall" "rules" {
+resource "google_compute_firewall" "default-allow-nodered" {
   project     = "workshop-iotdat"
   name        = "default-allow-nodered"
   network     = "default"
