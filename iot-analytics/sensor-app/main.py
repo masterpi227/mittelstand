@@ -31,7 +31,7 @@ if __name__ == "__main__":
 			pass
 	try:
 		with open('AirQualityUCI.csv','r') as csvfile:
-			reader = csv.DictReader(csvfile) # csv.reader(csvfile, delimiter=',')
+			reader = csv.DictReader(csvfile, delimiter=";", quotechar="'") # csv.reader(csvfile, delimiter=',')
 			for row in reader:
 				data.put(row)
 	except:
@@ -43,16 +43,18 @@ if __name__ == "__main__":
 			for key in dt.keys():
 				if key in item_keys:
 					item = {
-						"measurement": item_keys[key],
+						"measurement": item_keys[key].strip(),
 						"tags":{
 							"machine": "room_lab"
 						},
 						"timestamp": int(time.time()*1000),
 						"fields":{
-							"value": float(dt[key])
+							"value": float(dt[key].replace(',','.'))
 						}
 					}
 					client.write_points([item], time_precision='ms')
+				else:
+					pass #print(key)
 			data.put(dt)
 			time.sleep(0.1)
 		except:
