@@ -1,0 +1,25 @@
+{
+    "bucket_interval": "1m",
+    "default_bucket": "temperature",
+    "offset": "30s",
+    "features": {
+        "io": [
+            {
+                "metric": "avg",
+                "field": "value",
+                "name": "mean_temperature",
+                "default": 0,
+                "measurement": "temperature",
+                "anomaly_type": "low_high"
+            }
+        ]
+    },
+    "min_threshold": 75,
+    "max_threshold": 95,
+    "name": "temperature_forecast",
+    "interval": "1m",
+    "max_evals": 5,
+    "type": "timeseries",
+    "span": 10,
+    "forecast": 5
+}

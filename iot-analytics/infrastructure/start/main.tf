@@ -110,6 +110,7 @@ resource "google_compute_instance" "instance-nodered" {
   metadata_startup_script = <<SCRIPT
     apt update
     apt install -y git
+    cd
     git clone https://github.com/masterpi227/mittelstand.git
     cd mittelstand/iot-basics
     bash docker.sh

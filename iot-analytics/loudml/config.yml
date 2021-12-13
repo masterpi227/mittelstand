@@ -1,0 +1,20 @@
+---
+buckets:
+  - name: hydrocarbone
+    type: influxdb
+    addr: instance-influxdb:8086
+    database: fabrikdaten
+    retention_policy: autogen
+    measurement: non_metanic_hydrocarbone_titania
+  - name: temperature
+    type: influxdb
+    addr: instance-influxdb:8086
+    database: fabrikdaten
+    retention_policy: autogen
+    measurement: temperature
+
+storage:
+  path: /var/lib/loudml
+
+server:
+  listen: 0.0.0.0:8077
