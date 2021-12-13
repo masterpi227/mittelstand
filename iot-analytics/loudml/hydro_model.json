@@ -1,25 +1,26 @@
 {
     "default_datasource": "hydrocarbone",
-    "defautl_bucket": "hydrocarbone",
-    "default_datasink": "hydrocarbone",
-    "name": "hydrocarbone_mean_value__5m",
+    "default_datasink": "hydrocarbone_output",
+    "name": "hydrocarbone_mean_value_5m",
     "type": "donut",
-    "features": [
-        {
-            "metric": "mean",
-            "measurement": "non_metanic_hydrocarbone_titania",
-            "field": "value",
-            "io": "io",
-            "name": "mean_value",
-            "anomaly_type": "low_high",
-            "default": 0
-        }
-    ],
+    "features": {
+        "io": [
+                {
+                    "metric": "mean",
+                    "measurement": "non_metanic_hydrocarbone_titania",
+                    "field": "value",
+                    "name": "mean_value",
+                    "anomaly_type": "low_high",
+                    "default": 0
+                }
+            ]
+    },
     "min_threshold": 75,
     "max_threshold": 95,
     "bucket_interval": "5m",
     "offset": "10s",
     "interval": "60s",
     "max_evals": 21,
-    "span": 24
+    "span": 24,
+    "forecast": 5
 }

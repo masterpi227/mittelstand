@@ -6,12 +6,24 @@ buckets:
     database: fabrikdaten
     retention_policy: autogen
     measurement: non_metanic_hydrocarbone_titania
+  - name: hydrocarbone_output
+    type: influxdb
+    addr: instance-influxdb:8086
+    database: fabrikdaten
+    retention_policy: autogen
+    measurement: non_metanic_hydrocarbone_titania_model
   - name: temperature
     type: influxdb
     addr: instance-influxdb:8086
     database: fabrikdaten
     retention_policy: autogen
     measurement: temperature
+  - name: temperature_output
+    type: influxdb
+    addr: instance-influxdb:8086
+    database: fabrikdaten
+    retention_policy: autogen
+    measurement: temperature_model
 
 storage:
   path: /var/lib/loudml
