@@ -2,8 +2,7 @@
     "bucket_interval": "1m",
     "default_bucket": "temperature",
     "offset": "30s",
-    "features": {
-        "io": [
+    "features": [
             {
                 "metric": "avg",
                 "field": "value",
@@ -12,8 +11,7 @@
                 "measurement": "temperature",
                 "anomaly_type": "low_high"
             }
-        ]
-    },
+        ],
     "min_threshold": 75,
     "max_threshold": 95,
     "name": "temperature_forecast",
