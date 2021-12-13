@@ -164,7 +164,7 @@ resource "google_compute_instance" "instance-sensorapp" {
 }
 
 resource "google_compute_firewall" "default-allow-grafana" {
-  project     = "workshop-iotdat"
+  project     = "workshop-iotdat-test-02"
   name        = "default-allow-grafana"
   network     = "default"
   description = "Creates firewall rule targeting tagged instances"
@@ -179,7 +179,7 @@ resource "google_compute_firewall" "default-allow-grafana" {
 }
 
 resource "google_compute_firewall" "default-allow-nodered" {
-  project     = "workshop-iotdat"
+  project     = "workshop-iotdat-test-02"
   name        = "default-allow-nodered"
   network     = "default"
   description = "Creates firewall rule targeting tagged instances"
