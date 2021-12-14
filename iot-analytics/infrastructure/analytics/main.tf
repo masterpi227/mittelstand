@@ -164,6 +164,48 @@ resource "google_compute_instance" "instance-sensorapp" {
   }
 }
 
+resource "google_compute_instance" "instance-loudml" {
+  name                      = "instance-loudml"
+  zone                      = "us-central1-a"
+  tags                      = ["grafana"]
+  machine_type              = "n1-standard-1"
+  allow_stopping_for_update = true
+
+  boot_disk {
+    auto_delete = "true"
+
+    initialize_params {
+      image = "debian-cloud/debian-10"
+      size  = "10"
+    }
+  }
+
+  network_interface {
+    network = "default"
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+
+  metadata_startup_script = <<SCRIPT
+    apt update
+    apt install -y git
+    git clone https://github.com/masterpi227/mittelstand.git
+    cd mittelstand/iot-basics
+    bash docker.sh
+    cd ..
+    cd iot-analytics
+    bash loudml.sh
+    SCRIPT
+
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    
+    scopes = ["cloud-platform"]
+  }
+}
+
 resource "google_compute_firewall" "default-allow-grafana" {
   project     = var.project_id
   name        = "default-allow-grafana"
