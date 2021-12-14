@@ -4,24 +4,32 @@ buckets:
     type: influxdb
     addr: instance-influxdb:8086
     database: fabrikdaten
+    dbuser: user
+    dbuser_password: ax3s4cd5fv6rbgt7hnz8jmu9
     retention_policy: autogen
     measurement: non_metanic_hydrocarbone_titania
   - name: hydrocarbone_output
     type: influxdb
     addr: instance-influxdb:8086
     database: fabrikdaten
+    dbuser: user
+    dbuser_password: ax3s4cd5fv6rbgt7hnz8jmu9
     retention_policy: autogen
     measurement: non_metanic_hydrocarbone_titania_model
   - name: temperature
     type: influxdb
     addr: instance-influxdb:8086
     database: fabrikdaten
+    dbuser: user
+    dbuser_password: ax3s4cd5fv6rbgt7hnz8jmu9
     retention_policy: autogen
     measurement: temperature
   - name: temperature_output
     type: influxdb
     addr: instance-influxdb:8086
     database: fabrikdaten
+    dbuser: user
+    dbuser_password: ax3s4cd5fv6rbgt7hnz8jmu9
     retention_policy: autogen
     measurement: temperature_model
 
