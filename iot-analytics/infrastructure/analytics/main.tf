@@ -113,6 +113,10 @@ resource "google_compute_instance" "instance-nodered" {
     cd
     git clone https://github.com/masterpi227/mittelstand.git
     cd mittelstand/iot-basics
+    chmod 777 node-red/data 
+    chmod 777 node-red/data/settings.js
+    chmod 777 node-red
+    chmod 777 node-red/settings.js
     bash docker.sh
     bash node-red.sh
     SCRIPT
