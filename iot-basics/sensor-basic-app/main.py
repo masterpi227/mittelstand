@@ -5,11 +5,10 @@ import time
 import json
 
 def on_connect(client, userdata, flags, rc):
-    print("Connected with result code "+str(rc))
+	print("Connected with result code "+str(rc))
 
-# The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+	print(msg.topic+" "+str(msg.payload))
 
 if __name__ == "__main__":
 
@@ -40,6 +39,7 @@ if __name__ == "__main__":
 			client.on_message = on_message
 
 			client.connect("instance-mosquitto", 1883, 1800)
+			client.loop_start()
 			break
 		except:
 			print("Error in mqtt connection")
@@ -62,9 +62,10 @@ if __name__ == "__main__":
 						"timestamp": int(time.time()*1000),
 						"value": float(dt[key].replace(',','.'))
 					}
-					client.publish("room_lab/state/"+item_keys[key].strip(), json.dumps(item), 2)		
+					client.publish(topic="room_lab/state/"+item_keys[key].strip(), payload=json.dumps(item))
 				else:
-					print(key)
+					pass
+					#print(key)
 			data.put(dt)
 			time.sleep(0.1)
 		except:
