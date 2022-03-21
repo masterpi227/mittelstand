@@ -67,6 +67,6 @@ if __name__ == "__main__":
 					pass
 					#print(key)
 			data.put(dt)
-			time.sleep(0.1)
+			time.sleep(1)
 		except:
 			print("Error data processing")
