@@ -42,7 +42,7 @@ if __name__ == "__main__":
 			client.connect("instance-mosquitto", 1883, 1800)
 			break
 		except:
-			pass
+			print("Error in mqtt connection")
 	try:
 		with open('AirQualityUCI.csv','r') as csvfile:
 			reader = csv.DictReader(csvfile, delimiter=";", quotechar="'") # csv.reader(csvfile, delimiter=',')
