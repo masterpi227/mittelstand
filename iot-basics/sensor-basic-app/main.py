@@ -64,7 +64,7 @@ if __name__ == "__main__":
 					}
 					client.publish("room_lab/state/"+item_keys[key].strip(), json.dumps(item), 2)		
 				else:
-					pass #print(key)
+					print(key)
 			data.put(dt)
 			time.sleep(0.1)
 		except:
