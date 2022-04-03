@@ -42,17 +42,18 @@ if __name__ == "__main__":
 			dt = data.get()
 			for key in dt.keys():
 				if key in item_keys:
-					item = {
-						"measurement": item_keys[key].strip(),
-						"tags":{
-							"machine": "room_lab"
-						},
-						"timestamp": int(time.time()*1000),
-						"fields":{
-							"value": float(dt[key].replace(',','.'))
+					if float(dt[key].replace(',','.')) > -200:
+						item = {
+							"measurement": item_keys[key].strip(),
+							"tags":{
+								"machine": "room_lab"
+							},
+							"timestamp": int(time.time()*1000),
+							"fields":{
+								"value": float(dt[key].replace(',','.'))
+							}
 						}
-					}
-					client.write_points([item], time_precision='ms')
+						client.write_points([item], time_precision='ms')
 				else:
 					pass #print(key)
 			data.put(dt)
