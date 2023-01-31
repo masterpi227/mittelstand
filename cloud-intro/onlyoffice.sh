@@ -1,1 +1,1 @@
-docker run -i -t -d -p 8081:80 onlyoffice/documentserver
+docker run -i -t -d -p 80:80 onlyoffice/documentserver
