@@ -217,7 +217,7 @@ resource "google_compute_instance" "instance-virtualpc" {
 
   boot_disk {
     initialize_params {
-      image = "windows-server-2019-datacenter-v20220315"
+      image = "windows-server-2019-datacenter-v20230315"
       size  = "50"
       type  = "pd-standard"
     }
