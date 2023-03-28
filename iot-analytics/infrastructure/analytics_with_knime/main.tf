@@ -232,7 +232,11 @@ resource "google_compute_instance" "instance-virtualpc" {
 
   metadata_startup_script = <<-EOF
     <powershell>
-    wget https://download.knime.org/analytics-platform/win/KNIME%204.5.3%20Installer%20%2864bit%29.exe -OutFile "C:\knime.exe"
+    $url = "https://download.knime.org/analytics-platform/win/KNIME%204.5.3%20Installer%20%2864bit%29.exe"
+    $output_file = "C:\knime.exe"
+
+    Invoke-WebRequest -Uri $url -OutFile $output_file  
+    
     </powershell>
   EOF
 
