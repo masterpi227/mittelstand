@@ -54,18 +54,21 @@ if __name__ == "__main__":
 	while not data.empty():
 		try:
 			dt = data.get()
-			for key in dt.keys():
+			#print(dt)
+			for key,value in dt.items():
 				#if key in item_keys:
-				item = {
-					"measurement": "sensor",
-					"machine": ("station"+str(item_keys[key].replace("/","").strip()) if item_keys[key].find('Pass') == -1 else item_keys[key].replace("/","").strip()),
-					"timestamp": int(time.time()*1000),
-					"value": float(dt[key].replace(',','.'))
-				}
-				client.publish(topic="prodline/state/"+item['machine'], payload=json.dumps(item))
+				if str(key) != "Time":
+
+					item = {
+							"measurement": "sensor",
+							"machine": ("station"+str(key.replace("/","").strip()) if str(key).find('Pass') == -1 else str(key).replace("/","").strip()),
+							"timestamp": int(time.time()*1000),
+							"value": float(value.replace(',','.'))
+					}
+					client.publish(topic="prodline/state/"+item['machine'], payload=json.dumps(item))
 				#else:
-				#	pass
-					#print(key)
+				#       pass
+						#print(key)
 				time.sleep(1)
 			data.put(dt)
 			
