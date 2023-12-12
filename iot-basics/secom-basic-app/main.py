@@ -3,6 +3,8 @@ import csv
 import queue
 import time
 import json
+import sys
+import os
 
 def on_connect(client, userdata, flags, rc):
 	print("Connected with result code "+str(rc))
@@ -58,14 +60,16 @@ if __name__ == "__main__":
 			for key,value in dt.items():
 				#if key in item_keys:
 				if str(key) != "Time":
-
-					item = {
-							"measurement": "sensor",
-							"machine": ("station"+str(key.replace("/","").strip()) if str(key).find('Pass') == -1 else str(key).replace("/","").strip()),
-							"timestamp": int(time.time()*1000),
-							"value": float(value.replace(',','.'))
-					}
-					client.publish(topic="prodline/state/"+item['machine'], payload=json.dumps(item))
+					try:
+						item = {
+								"measurement": "sensor",
+								"machine": ("station"+str(key.replace("/","").strip()) if str(key).find('Pass') == -1 else str(key).replace("/","").strip()),
+								"timestamp": int(time.time()*1000),
+								"value": float(value.replace(',','.'))
+						}
+						client.publish(topic="prodline/state/"+item['machine'], payload=json.dumps(item))
+					except:
+						pass
 				#else:
 				#       pass
 						#print(key)
